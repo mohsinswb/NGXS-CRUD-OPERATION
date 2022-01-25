@@ -8,24 +8,25 @@ import {Todo} from './models/Todo';
 })
 export class TodoService {
 
-    apiUrl='https://localhost:44302/api/Employees'
+    // apiUrl='https://localhost:44302/api/Employees'
+    apiUrl='https://614d84dde3cf1f001712d18a.mockapi.io/Empolyee'
 
     constructor(private http: HttpClient) {
     }
 
     fetchTodos():Observable<Todo[]> {
-        return this.http.get<Todo[]>(`${this.apiUrl}/GetAll`);
+        return this.http.get<Todo[]>(`${this.apiUrl}`);
     }
 
     deleteTodo(id: number) {
-        return this.http.delete(`https://localhost:44302/api/Employees/delete/${id}`);
+        return this.http.delete(`${this.apiUrl}/${id}`);
     }
 
     addTodo(payload: Todo) {
-        return this.http.post<Todo>(`https://localhost:44302/api/Employees/save`, payload);
+        return this.http.post<Todo>(`${this.apiUrl}`, payload);
     }
 
     updateTodo(payload: Todo, id: number) {
-        return this.http.put<Todo>(`https://localhost:44302/api/Employees/update/${id}`, payload);
+        return this.http.put<Todo>(`${this.apiUrl}/${id}`, payload);
     }
 }
